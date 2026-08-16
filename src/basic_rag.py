@@ -215,3 +215,19 @@ QUESTION:{question}
         temperature=0)
     return response.choices[0].message.content
 
+# create and run law QUESTION
+def ask_question(
+    question,
+    collection,
+    embedding_model,
+    groq_client):
+
+    start_time = time.perf_counter()
+    # Step 1: retrieve relevant chunks
+    retrieved_chunks = retrieve_chunks(question,collection,embedding_model)
+    # Step 2: generate answer
+    answer = generate_answer(question,retrieved_chunks,groq_client)
+    end_time = time.perf_counter()
+    latency = end_time - start_time
+    return answer, retrieved_chunks, latency
+
