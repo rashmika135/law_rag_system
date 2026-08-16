@@ -77,3 +77,39 @@ def extract_pdf_pages(pdf_path):
     document.close()
 
     return pages
+
+# text chunking
+def create_basic_chunks(pages):
+    """
+    Split each PDF page into normal fixed-size text chunks.
+
+    This is intentionally simple because this is our
+    baseline RAG approach.
+    """
+
+    text_splitter = RecursiveCharacterTextSplitter(
+        chunk_size=CHUNK_SIZE,
+        chunk_overlap=CHUNK_OVERLAP,
+        separators=["\n\n", "\n", " ", ""]
+    )
+
+    chunks = []
+
+    chunk_id = 0
+
+    for page in pages:
+
+        # Split the page text
+        page_chunks = text_splitter.split_text(page["text"])
+
+        for text in page_chunks:
+
+            chunks.append({
+                "id": f"chunk_{chunk_id}",
+                "text": text,
+                "page": page["page"]
+            })
+
+            chunk_id += 1
+
+    return chunks
