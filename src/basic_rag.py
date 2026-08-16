@@ -47,3 +47,33 @@ if not groq_api_key:
     )
 
 
+
+#read epf act pdf
+def extract_pdf_pages(pdf_path):
+    """
+    Extract text from the PDF page by page.
+
+    We keep the page numbers because they will later help us
+    identify where retrieved information came from.
+    """
+
+    if not pdf_path.exists():
+        raise FileNotFoundError(f"PDF not found: {pdf_path}")
+
+    document = pymupdf.open(pdf_path)
+
+    pages = []
+
+    for page_number, page in enumerate(document):
+
+        # get text from the current page
+        text = page.get_text("text")
+
+        pages.append({
+            "page": page_number + 1,
+            "text": text
+        })
+
+    document.close()
+
+    return pages
