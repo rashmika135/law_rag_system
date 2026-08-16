@@ -64,9 +64,7 @@ def extract_pdf_pages(pdf_path):
 
         pages.append({
             "page": page_number + 1,
-            "text": text
-        })
-
+            "text": text})
     document.close()
 
     return pages
@@ -94,9 +92,7 @@ def create_basic_chunks(pages):
             chunks.append({
                 "id": f"chunk_{chunk_id}",
                 "text": text,
-                "page": page["page"]
-            })
-
+                "page": page["page"]})
             chunk_id += 1
 
     return chunks
@@ -124,13 +120,10 @@ def create_vector_store(chunks, embedding_model):
         chunk_texts,
         show_progress_bar=True
     )
-
     print("Embeddings created.")
 
     # Create ChromaDB database
-    client = chromadb.PersistentClient(
-        path=str(CHROMA_PATH)
-    )
+    client = chromadb.PersistentClient(path=str(CHROMA_PATH))
 
     # Delete the old collection if it already exists.
     try:
@@ -143,17 +136,9 @@ def create_vector_store(chunks, embedding_model):
     )
 
     # Metadata stores the PDF page for each chunk
-    metadatas = [
-        {
-            "page": chunk["page"]
-        }
-        for chunk in chunks
-    ]
+    metadatas = [{"page": chunk["page"]}for chunk in chunks]
 
-    ids = [
-        chunk["id"]
-        for chunk in chunks
-    ]
+    ids = [chunk["id"]for chunk in chunks]
 
     # Store text + embeddings + metadata
     collection.add(
@@ -163,8 +148,30 @@ def create_vector_store(chunks, embedding_model):
         metadatas=metadatas
     )
 
-    print(
-        f"Stored {collection.count()} chunks in ChromaDB."
-    )
-
+    print(f"Stored {collection.count()} chunks in ChromaDB.")
     return collection
+
+#retreiving chunks relevant to the questions
+def retrieve_chunks(
+    question,
+    collection,
+    embedding_model):
+    # Convert the question into an embedding
+    question_embedding = embedding_model.encode_query(
+        question
+    )
+    # Search ChromaDB
+    results = collection.query(
+        query_embeddings=[question_embedding.tolist()],
+        n_results=TOP_K,
+        include=["documents","metadatas","distances"])
+
+    retrieved_chunks = []
+    for i in range(len(results["documents"][0])):
+
+        retrieved_chunks.append({
+            "text": results["documents"][0][i],
+            "page": results["metadatas"][0][i]["page"],
+            "distance": results["distances"][0][i]})
+
+    return retrieved_chunks
