@@ -43,19 +43,12 @@ groq_api_key = os.getenv("GROQ_API_KEY")
 
 if not groq_api_key:
     raise ValueError(
-        "GROQ_API_KEY was not found. Add it to your .env file."
+        "GROQ_API_KEY was not found"
     )
-
 
 
 #read epf act pdf
 def extract_pdf_pages(pdf_path):
-    """
-    Extract text from the PDF page by page.
-
-    We keep the page numbers because they will later help us
-    identify where retrieved information came from.
-    """
 
     if not pdf_path.exists():
         raise FileNotFoundError(f"PDF not found: {pdf_path}")
@@ -80,12 +73,6 @@ def extract_pdf_pages(pdf_path):
 
 # text chunking
 def create_basic_chunks(pages):
-    """
-    Split each PDF page into normal fixed-size text chunks.
-
-    This is intentionally simple because this is our
-    baseline RAG approach.
-    """
 
     text_splitter = RecursiveCharacterTextSplitter(
         chunk_size=CHUNK_SIZE,
@@ -113,3 +100,71 @@ def create_basic_chunks(pages):
             chunk_id += 1
 
     return chunks
+
+#embedding model
+def load_embedding_model():
+
+    print("\nLoading embedding model...")
+
+    model = SentenceTransformer(EMBEDDING_MODEL)
+
+    print("Embedding model loaded.")
+
+    return model
+
+# creating the vector store
+def create_vector_store(chunks, embedding_model):
+
+    print("\nCreating embeddings...")
+
+    chunk_texts = [chunk["text"] for chunk in chunks]
+
+    # Convert document chunks into embeddings
+    embeddings = embedding_model.encode_document(
+        chunk_texts,
+        show_progress_bar=True
+    )
+
+    print("Embeddings created.")
+
+    # Create ChromaDB database
+    client = chromadb.PersistentClient(
+        path=str(CHROMA_PATH)
+    )
+
+    # Delete the old collection if it already exists.
+    try:
+        client.delete_collection(COLLECTION_NAME)
+    except Exception:
+        pass
+
+    collection = client.create_collection(
+        name=COLLECTION_NAME
+    )
+
+    # Metadata stores the PDF page for each chunk
+    metadatas = [
+        {
+            "page": chunk["page"]
+        }
+        for chunk in chunks
+    ]
+
+    ids = [
+        chunk["id"]
+        for chunk in chunks
+    ]
+
+    # Store text + embeddings + metadata
+    collection.add(
+        ids=ids,
+        documents=chunk_texts,
+        embeddings=embeddings.tolist(),
+        metadatas=metadatas
+    )
+
+    print(
+        f"Stored {collection.count()} chunks in ChromaDB."
+    )
+
+    return collection
