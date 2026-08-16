@@ -175,3 +175,43 @@ def retrieve_chunks(
             "distance": results["distances"][0][i]})
 
     return retrieved_chunks
+
+# give instructions LLM
+def build_context(retrieved_chunks):
+    context_parts = []
+    for i, chunk in enumerate(retrieved_chunks, start=1):
+
+        context_parts.append(f"""SOURCE {i}PDF Page: {chunk['page']}{chunk['text']}""")
+    return "\n".join(context_parts)
+
+
+# genarting answers using groq
+def generate_answer(
+    question,
+    retrieved_chunks,
+    groq_client):
+
+    context = build_context(retrieved_chunks)
+    prompt = f"""
+You are answering questions about the Employees'
+Provident Fund Act using ONLY the supplied context.
+
+Rules:
+
+1. Use only information contained in the context.
+2. Do not use outside legal knowledge.
+3. If the answer cannot be found in the context,
+   say: "The provided context does not contain enough
+   information to answer this question."
+4. Keep the answer concise.
+5. Mention the PDF page number supporting the answer.
+
+CONTEXT:{context}
+QUESTION:{question}
+"""
+    response = groq_client.chat.completions.create(
+        model=GROQ_MODEL,
+        messages=[{"role": "user","content": prompt}],
+        temperature=0)
+    return response.choices[0].message.content
+
