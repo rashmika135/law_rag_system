@@ -27,7 +27,7 @@ CHUNK_OVERLAP = 150
 # number of chunks retrieved for each question
 TOP_K = 5
 
-# Embedding 
+# embedding 
 EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
 
 # groq 
@@ -35,3 +35,14 @@ GROQ_MODEL = "llama-3.1-8b-instant"
 
 # chroma collection name
 COLLECTION_NAME = "epf_basic_rag"
+
+#load env variab 
+load_dotenv()
+
+groq_api_key = os.getenv("GROQ_API_KEY")
+
+if not groq_api_key:
+    raise ValueError(
+        "GROQ_API_KEY was not found. Add it to your .env file."
+    )
+
