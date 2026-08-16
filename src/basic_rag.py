@@ -231,3 +231,60 @@ def ask_question(
     latency = end_time - start_time
     return answer, retrieved_chunks, latency
 
+# the main function to run the RAG system
+def main():
+    print(" BASIC LEGAL RAG")
+
+    # Load PDF
+    print("\nLoading PDF...")
+    pages = extract_pdf_pages(PDF_PATH)
+    print(
+        f"PDF loaded successfully: {len(pages)} pages")
+
+    # Create basic chunks
+    chunks = create_basic_chunks(pages)
+    print(f"Basic chunks created: {len(chunks)}")
+
+    # Showing the first chunk
+    print("\nSAMPLE CHUNK")
+    print(chunks[0]["text"])
+    print("--------------------")
+
+    # Embedding 
+    embedding_model = load_embedding_model()
+    collection = create_vector_store(chunks, embedding_model)
+    # Groq client
+    groq_client = Groq(api_key=groq_api_key )
+    # Question-answer loop
+    print("\nRAG system is ready.")
+    print("Type 'exit' to stop.")
+
+    while True:
+        question = input("\nAsk a question: ").strip()
+
+        if question.lower() == "exit":
+            print("Exiting...")
+            break
+        if not question:
+            continue
+
+        answer, retrieved_chunks, latency = (ask_question(question,collection,embedding_model,groq_client))
+
+        # Show retrieved chunks
+        print("\n--- RETRIEVED CHUNKS ---")
+
+        for i, chunk in enumerate(retrieved_chunks,start=1):
+            print(f"\n{i}. Page {chunk['page']}")
+            print(f"Distance: "f"{chunk['distance']:.4f}")
+            # Only show first 300 characters
+            print(chunk["text"])
+
+        # Show generated answer
+        print("\n--- ANSWER ---")
+        print(answer)
+        # Latency
+        print(f"\nLatency: {latency:.2f} seconds")
+
+# Run main() 
+if __name__ == "__main__":
+    main()
