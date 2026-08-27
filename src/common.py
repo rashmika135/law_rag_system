@@ -12,6 +12,9 @@ FOCUSED_SECTIONS = ['Section10', 'Section11', 'Section12','Section13', 'Section1
                     'Section15','Section16', 'Section17', 'Section18','Section19', 'Section20'
 ]
 
+BASIC_CHUNK_SIZE = 700
+BASIC_CHUNK_OVERLAP = 100
+
 # PDF reading
 def read_pdf_text():
     # Load text from the EPF Act PDF
@@ -82,7 +85,7 @@ def extract_sections(text, matches):
 
 def load_focused_sections():
     # load the Act and break it into separate sections
-    # then keep only the sections we use in this focused approach
+    # then keep only the sections  use in this focused approach
     text = get_act_body_text()
     matches = find_section_matches(text)
     sections = extract_sections(text, matches)
@@ -96,3 +99,25 @@ def load_focused_sections():
         focused.append(sections[section_name])
 
     return focused
+
+def combine_sections(sections):
+    # put all the focused sections together as one piece of text
+    # also remember where each section starts and ends
+    text_parts = []
+    section_spans = []
+    position = 0
+
+    for item in sections:
+        if text_parts:
+            text_parts.append('\n\n')
+            position += 2
+
+        start = position
+        text_parts.append(item['text'])
+        position += len(item['text'])
+
+        section_spans.append({'section': item['section'],
+            'start': start,
+            'end': position})
+
+    return ''.join(text_parts), section_spans
