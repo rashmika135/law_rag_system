@@ -1,6 +1,7 @@
 from pathlib import Path
 import fitz
 import re
+from sentence_transformers import SentenceTransformer
 
 # Project paths
 ROOT_DIR = Path(__file__).resolve().parent.parent
@@ -14,6 +15,7 @@ FOCUSED_SECTIONS = ['Section10', 'Section11', 'Section12','Section13', 'Section1
 
 BASIC_CHUNK_SIZE = 700
 BASIC_CHUNK_OVERLAP = 100
+EMBEDDING_MODEL = 'sentence-transformers/all-MiniLM-L6-v2'
 
 # PDF reading
 def read_pdf_text():
@@ -151,3 +153,8 @@ def create_basic_chunks(
         start = end - overlap
 
     return chunks
+
+def load_embedding_model():
+    # looad the MiniLM model used to create embeddings
+    # the same model will be used for documents and questions
+    return SentenceTransformer(EMBEDDING_MODEL)
