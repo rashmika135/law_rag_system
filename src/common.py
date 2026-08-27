@@ -121,3 +121,33 @@ def combine_sections(sections):
             'end': position})
 
     return ''.join(text_parts), section_spans
+
+def create_basic_chunks(
+    sections,
+    chunk_size=BASIC_CHUNK_SIZE,
+    overlap=BASIC_CHUNK_OVERLAP
+):
+    # Create normal character chunks from the focused EPF text
+    # Keep the section names that belong to each chunk
+    full_text, section_spans = combine_sections(sections)
+
+    chunks = []
+    start = 0
+
+    while start < len(full_text):
+        end = min(start + chunk_size, len(full_text))
+
+        sections_in_chunk = [span['section']
+            for span in section_spans
+            if start < span['end'] and end > span['start']]
+
+        chunks.append({'id': f'basic_{len(chunks)}',
+            'text': full_text[start:end].strip(),
+            'sections': sections_in_chunk})
+
+        if end == len(full_text):
+            break
+
+        start = end - overlap
+
+    return chunks
