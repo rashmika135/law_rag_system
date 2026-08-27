@@ -62,3 +62,20 @@ def find_section_matches(text):
             matches.append(match)
 
     return matches
+
+def extract_sections(text, matches):
+    # extract the full text for each detected legal section
+    # next section marker is used as the end of the current section
+    sections = {}
+
+    for index, match in enumerate(matches):
+        number = match.group(1).upper()
+        start = match.start()
+
+        end = (matches[index + 1].start()
+            if index + 1 < len(matches)
+            else len(text))
+
+        sections[f'Section{number}'] = {'section': f'Section{number}','text': text[start:end].strip()}
+
+    return sections
