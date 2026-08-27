@@ -79,3 +79,20 @@ def extract_sections(text, matches):
         sections[f'Section{number}'] = {'section': f'Section{number}','text': text[start:end].strip()}
 
     return sections
+
+def load_focused_sections():
+    # load the Act and break it into separate sections
+    # then keep only the sections we use in this focused approach
+    text = get_act_body_text()
+    matches = find_section_matches(text)
+    sections = extract_sections(text, matches)
+
+    focused = []
+
+    for section_name in FOCUSED_SECTIONS:
+        if section_name not in sections:
+            raise ValueError(f'{section_name} was not found.')
+
+        focused.append(sections[section_name])
+
+    return focused
