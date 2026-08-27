@@ -31,27 +31,34 @@ def get_act_body_text():
     text = read_pdf_text()
 
     act_heading = re.search(
-        r'AN\s+ACT\s+TO\s+ESTABLISH\s+A\s+PROVIDENT\s+FUND',
-        text,
-        re.IGNORECASE
-    )
+        r'AN\s+ACT\s+TO\s+ESTABLISH\s+A\s+PROVIDENT\s+FUND',text,re.IGNORECASE)
 
-    if not act_heading:
-        raise ValueError(
-            'Could not find the EPF Act heading.'
-        )
+    if not act_heading:raise ValueError('Could not find the EPF Act heading.')
 
     text = text[act_heading.start():]
 
-    section_one = re.search(
-        r'(?<![\w.])1\.\s+This\s+Act\s+may\s+be\s+cited',
+    section_one = re.search(r'(?<![\w.])1\.\s+This\s+Act\s+may\s+be\s+cited',
         text,
-        re.IGNORECASE
-    )
+        re.IGNORECASE)
 
     if not section_one:
         raise ValueError(
-            'Could not find the real Section 1.'
-        )
+            'Could not find the real Section 1.')
 
     return text[section_one.start():]
+
+def find_section_matches(text):
+    # Find legal section numbers in the EPF Act
+    pattern = re.compile(r'(?<![\w.])(\d{1,2}[A-Z]?)\.[ \t]+(?=\S)')
+
+    matches = []
+    seen = set()
+
+    for match in pattern.finditer(text):
+        number = match.group(1).upper()
+
+        if number not in seen:
+            seen.add(number)
+            matches.append(match)
+
+    return matches
