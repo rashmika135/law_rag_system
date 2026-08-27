@@ -2,6 +2,7 @@ from pathlib import Path
 import fitz
 import re
 from sentence_transformers import SentenceTransformer
+import chromadb
 
 # Project paths
 ROOT_DIR = Path(__file__).resolve().parent.parent
@@ -158,3 +159,32 @@ def load_embedding_model():
     # looad the MiniLM model used to create embeddings
     # the same model will be used for documents and questions
     return SentenceTransformer(EMBEDDING_MODEL)
+
+def create_vector_collection(chunks,
+    embedding_model,
+    collection_name):
+    # Create embeddings for all chunks
+    # Store them in a Chroma collection for retrieval
+    texts = [chunk['text']for chunk in chunks]
+
+    embeddings = embedding_model.encode(texts,normalize_embeddings=True)
+
+    client = chromadb.Client()
+
+    try:
+        client.delete_collection(collection_name)
+    except Exception:
+        pass
+
+    collection = client.create_collection(
+        name=collection_name,
+        metadata={'hnsw:space': 'cosine'})
+
+    collection.add(
+        ids=[chunk['id']for chunk in chunks],
+        documents=texts,
+        embeddings=embeddings.tolist(),
+        metadatas=[{'sections': '|'.join(chunk['sections'])}
+            for chunk in chunks])
+
+    return collection
