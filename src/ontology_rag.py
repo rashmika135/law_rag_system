@@ -26,3 +26,59 @@ RELATED_ONTOLOGY_BOOST = 0.10
 CONCEPT_THRESHOLD = 0.30
 
 EPF = Namespace("http://example.org/epf#")
+
+def name(uri):
+    return str(uri).split("#")[-1]
+
+
+def load_ontology_concepts(embedding_model):
+    if not ONTOLOGY_PATH.exists():
+        raise FileNotFoundError(
+            f"Ontology not found: {ONTOLOGY_PATH}")
+
+    graph = Graph()
+    graph.parse(ONTOLOGY_PATH)
+
+    concepts = []
+
+    for concept, _, section in graph.triples(
+        (None, EPF.definedIn, None)):
+        labels = []
+        alt_labels = []
+
+        for label in graph.objects(
+            concept,
+            RDFS.label):
+            labels.append(
+                str(label) )
+
+        for label in graph.objects(
+            concept,
+            SKOS.altLabel):
+            alt_labels.append(
+                str(label) )
+
+        text_parts = [ name(concept)]
+
+        text_parts.extend( labels)
+
+        text_parts.extend( alt_labels)
+
+        concepts.append({"concept": name(concept),
+            "section": name(section),
+            "text": " ".join(text_parts) })
+
+    if len(concepts) == 0:
+        raise ValueError("No ontology concepts using epf:definedIn were found." )
+
+    texts = []
+
+    for concept in concepts:
+        texts.append(concept["text"])
+
+    embeddings = embedding_model.encode(texts, normalize_embeddings=True )
+
+    for i in range(len(concepts)):
+        concepts[i]["embedding"] = embeddings[i]
+
+    return graph, concepts
