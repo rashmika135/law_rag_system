@@ -200,3 +200,36 @@ def create_vector_collection(chunks,
         metadatas=metadatas)
 
     return collection
+
+def query_vector_collection(
+    question,
+    collection,
+    embedding_model,
+    top_k=5):
+    question_embedding = embedding_model.encode([question], normalize_embeddings=True)[0]
+
+    results = collection.query(
+        query_embeddings=[question_embedding.tolist()],
+        n_results=min( top_k, collection.count()),
+        include=["documents", "metadatas", "distances" ])
+
+    retrieved = []
+
+    documents = results["documents"][0]
+    metadatas = results["metadatas"][0]
+    distances = results["distances"][0]
+
+    for i in range(len(documents)):
+        sections = []
+
+        for section in metadatas[i].get( "sections", "").split("|"):
+            if section:
+                sections.append(section)
+
+        retrieved.append({
+            "text": documents[i],
+            "sections": sections,
+            "vector_similarity":
+                1.0 - float(distances[i])})
+
+    return retrieved
