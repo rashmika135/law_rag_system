@@ -296,3 +296,14 @@ QUESTION:
 
     except Exception as error:
         return ("Answer generation failed because of an API error.", str(error))
+    
+def create_section_chunks(sections):
+    chunks = []
+
+    for i, item in enumerate(sections):
+        chunks.append({
+            "id": f"section_{i}",
+            "text": item["text"],
+            "sections": [item["section"]]})
+
+    return chunks   
