@@ -112,3 +112,51 @@ def load_focused_sections():
             all_sections[section_name])
 
     return focused_sections
+
+def create_basic_chunks(
+    sections,
+    chunk_size=BASIC_CHUNK_SIZE,
+    overlap=BASIC_CHUNK_OVERLAP):
+    full_text = ""
+    section_positions = []
+
+    for item in sections:
+        if full_text:
+            full_text += "\n\n"
+
+        start = len(full_text)
+
+        full_text += item["text"]
+
+        end = len(full_text)
+
+        section_positions.append({
+            "section": item["section"],
+            "start": start,
+            "end": end})
+
+    chunks = []
+
+    start = 0
+
+    while start < len(full_text):
+        end = min(
+            start + chunk_size,
+            len(full_text))
+
+        chunk_sections = []
+
+        for item in section_positions:
+            if start < item["end"] and end > item["start"]:
+                chunk_sections.append( item["section"])
+
+        chunks.append({"id": f"basic_{len(chunks)}",
+            "text": full_text[start:end].strip(),
+            "sections": chunk_sections})
+
+        if end == len(full_text):
+            break
+
+        start = end - overlap
+
+    return chunks
