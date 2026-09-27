@@ -163,3 +163,40 @@ def create_basic_chunks(
 
 def load_embedding_model():
     return SentenceTransformer(EMBEDDING_MODEL)
+
+def create_vector_collection(chunks,
+    embedding_model,
+    collection_name):
+    texts = []
+
+    for chunk in chunks:
+        texts.append(chunk["text"])
+
+    embeddings = embedding_model.encode(texts,vnormalize_embeddings=True)
+
+    client = chromadb.Client()
+
+    try:
+        client.delete_collection(collection_name)
+    except Exception:
+        pass
+
+    collection = client.create_collection(
+        name=collection_name,
+        metadata={"hnsw:space": "cosine"})
+
+    ids = []
+    metadatas = []
+
+    for chunk in chunks:
+        ids.append(chunk["id"])
+
+        metadatas.append({"sections": "|".join(chunk["sections"])})
+
+    collection.add(
+        ids=ids,
+        documents=texts,
+        embeddings=embeddings.tolist(),
+        metadatas=metadatas)
+
+    return collection
