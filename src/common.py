@@ -233,3 +233,13 @@ def query_vector_collection(
                 1.0 - float(distances[i])})
 
     return retrieved
+
+def get_groq_client():
+    load_dotenv(ROOT_DIR / ".env")
+
+    api_key = os.getenv("GROQ_API_KEY")
+
+    if not api_key:
+        raise ValueError("GROQ_API_KEY was not found in .env")
+
+    return Groq(api_key=api_key)
