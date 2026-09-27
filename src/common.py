@@ -160,3 +160,6 @@ def create_basic_chunks(
         start = end - overlap
 
     return chunks
+
+def load_embedding_model():
+    return SentenceTransformer(EMBEDDING_MODEL)
