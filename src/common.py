@@ -243,3 +243,56 @@ def get_groq_client():
         raise ValueError("GROQ_API_KEY was not found in .env")
 
     return Groq(api_key=api_key)
+
+def safe_generate_answer(
+    question,
+    retrieved_chunks,
+    groq_client):
+    context_parts = []
+
+    for i, chunk in enumerate(retrieved_chunks, start=1):
+        part = f"SOURCE {i}\n"
+        part += f"Section(s): {', '.join(chunk['sections'])}\n\n"
+        part += chunk["text"]
+
+        context_parts.append(part)
+
+    context = "\n\n".join(context_parts)
+
+    prompt = f"""You are answering questions about the Sri Lankan Employees' Provident Fund Act.
+
+Use only the supplied legal context.
+
+Rules:
+1. Answer directly and briefly.
+2. Do not use outside legal knowledge.
+3. Cite the relevant section like [Section 16].
+4. If the context does not contain the answer, say:
+   The provided context does not contain enough information to answer this question.
+
+CONTEXT:
+
+{context}
+
+QUESTION:
+
+{question}
+"""
+
+    try:
+        response = groq_client.chat.completions.create(
+            model=GROQ_MODEL,
+            messages=[
+                {
+                    "role": "user",
+                    "content": prompt
+                }
+            ],
+            temperature=0)
+
+        answer = response.choices[0].message.content
+
+        return answer, None
+
+    except Exception as error:
+        return ("Answer generation failed because of an API error.", str(error))
