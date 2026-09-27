@@ -2,53 +2,51 @@ import time
 
 from src.common import (
     load_focused_sections,
-    create_basic_chunks,
+    create_section_chunks,
     load_embedding_model,
     create_vector_collection,
     query_vector_collection,
     get_groq_client,
-    safe_generate_answer
-)
+    safe_generate_answer)
 
 
 TOP_K = 3
 
 
-def initialize_basic_rag():
-    print("Initializing Basic RAG...")
+def initialize_structure_rag():
+    print("Initializing Structure RAG...")
 
     sections = load_focused_sections()
 
-    chunks = create_basic_chunks(
+    chunks = create_section_chunks(
         sections)
 
     embedding_model = load_embedding_model()
 
-    collection = create_vector_collection(
-        chunks,
+    collection = create_vector_collection( chunks,
         embedding_model,
-        "epf_basic_rag")
+        "epf_structure_rag")
 
     rag = { "embedding_model": embedding_model,
         "collection": collection,
-        "groq_client": get_groq_client() }
+        "groq_client": get_groq_client()}
 
     return rag
 
 
-def run_basic_query(question, rag):
+def run_structure_query(question, rag):
     start_time = time.perf_counter()
 
-    chunks = query_vector_collection(question,
+    chunks = query_vector_collection( question,
         rag["collection"],
         rag["embedding_model"],
         top_k=TOP_K)
 
     answer, error = safe_generate_answer(question,
         chunks,
-        rag["groq_client"])
+        rag["groq_client"] )
 
-    latency = ( time.perf_counter() - start_time)
+    latency = time.perf_counter() - start_time
 
     return { "answer": answer,
         "retrieved_chunks": chunks,
@@ -57,23 +55,20 @@ def run_basic_query(question, rag):
 
 
 if __name__ == "__main__":
-    rag = initialize_basic_rag()
+    rag = initialize_structure_rag()
 
     while True:
-        question = input(
-            "\nQuestion: "
-        ).strip()
+        question = input( "\nQuestion: ").strip()
 
         if question.lower() == "exit":
             break
 
-        result = run_basic_query( question, rag)
+        result = run_structure_query( question, rag)
 
         print("\nRetrieved:")
 
         for chunk in result["retrieved_chunks"]:
-            print(
-                chunk["sections"] )
+            print(chunk["sections"] )
 
         print("\nAnswer:")
-        print( result["answer"])
+        print( result["answer"] )
