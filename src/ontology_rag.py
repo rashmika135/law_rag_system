@@ -150,3 +150,34 @@ def get_ontology_sections(matches,graph):
     related_sections = ( related_sections- direct_sections )
 
     return ( direct_sections,related_sections)
+
+def rerank_with_ontology( chunks, direct_sections, related_sections):
+    reranked = []
+
+    for chunk in chunks:
+        vector_score = chunk["vector_similarity"]
+        bonus = 0.0
+
+        if chunk["sections"]:
+            section = chunk["sections"][0]
+        else:
+            section = None
+
+        if section in direct_sections:
+            bonus = DIRECT_ONTOLOGY_BOOST
+
+        elif section in related_sections:
+            bonus = RELATED_ONTOLOGY_BOOST
+
+        new_chunk = chunk.copy()
+
+        new_chunk["ontology_bonus"] = bonus
+
+        new_chunk["final_score"] = (vector_score + bonus)
+
+        reranked.append( new_chunk )
+
+    reranked.sort(key=lambda item: item["final_score"],
+        reverse=True)
+
+    return reranked
