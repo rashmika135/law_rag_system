@@ -236,3 +236,36 @@ def run_ontology_query(question, rag):
         "ontology_matches": ontology_matches,
         "direct_sections": sorted(direct_sections),
         "related_sections": sorted(related_sections)}
+    
+if __name__ == "__main__":
+    rag = initialize_ontology_rag()
+
+    while True:
+        question = input( "\nQuestion: ").strip()
+
+        if question.lower() == "exit":
+            break
+
+        result = run_ontology_query( question, rag)
+        print("\nOntology matches:")
+        print( result["ontology_matches"])
+
+        print("\nDirect ontology sections:")
+        print( result["direct_sections"])
+
+        print("\nRelated ontology sections:")
+        print( result["related_sections"])
+
+        print("\nFinal retrieved:")
+
+        for chunk in result["retrieved_chunks"]:
+            print(chunk["sections"],
+                "| vector =",
+                round( chunk["vector_similarity"],3),
+                "| ontology =",
+                round( chunk["ontology_bonus"],3 ),
+                "| final =",
+                round( chunk["final_score"],  3 ))
+
+        print("\nAnswer:")
+        print( result["answer"])
