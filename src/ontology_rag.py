@@ -105,3 +105,48 @@ def detect_ontology_concepts(question,
     matches.sort(key=lambda item: item["score"],reverse=True )
 
     return matches[:top_k]
+
+def get_related_concepts(concept_name, graph):
+    concept = EPF[concept_name]
+    related = set()
+
+    relations = [ EPF.hasConsequence, EPF.relatedTo]
+
+    for relation in relations:
+        for target in graph.objects(concept, relation):
+            related.add( name(target))
+
+        for source in graph.subjects(relation, concept):
+            related.add(name(source) )
+
+    related.discard( concept_name)
+
+    return related
+
+def get_concept_sections( concept_name,graph):
+    sections = set()
+
+    concept = EPF[concept_name]
+
+    for section in graph.objects( concept, EPF.definedIn):
+        sections.add( name(section) )
+
+    return sections
+
+def get_ontology_sections(matches,graph):
+    direct_sections = set()
+    related_sections = set()
+
+    for match in matches:
+        direct_sections.add( match["section"])
+
+        related_concepts = get_related_concepts( match["concept"],graph )
+
+        for concept_name in related_concepts:
+            sections = get_concept_sections(concept_name,graph)
+
+            related_sections.update(sections)
+
+    related_sections = ( related_sections- direct_sections )
+
+    return ( direct_sections,related_sections)
