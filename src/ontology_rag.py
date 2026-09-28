@@ -82,3 +82,26 @@ def load_ontology_concepts(embedding_model):
         concepts[i]["embedding"] = embeddings[i]
 
     return graph, concepts
+
+def detect_ontology_concepts(question,
+    embedding_model,
+    concepts,
+    top_k=ONTOLOGY_TOP_K):
+    question_embedding = embedding_model.encode(
+        [question],
+        normalize_embeddings=True)[0]
+
+    matches = []
+
+    for concept in concepts:
+        score = float(
+            np.dot( question_embedding, concept["embedding"]  ) )
+
+        if score >= CONCEPT_THRESHOLD:
+            matches.append({ "concept": concept["concept"],
+                "section": concept["section"],
+                "score": score })
+
+    matches.sort(key=lambda item: item["score"],reverse=True )
+
+    return matches[:top_k]
