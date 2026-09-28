@@ -181,3 +181,58 @@ def rerank_with_ontology( chunks, direct_sections, related_sections):
         reverse=True)
 
     return reranked
+
+def initialize_ontology_rag():
+    print("Initializing Ontology RAG...")
+
+    sections = load_focused_sections()
+
+    chunks = create_section_chunks(sections)
+
+    embedding_model = load_embedding_model()
+
+    collection = create_vector_collection(chunks, embedding_model,"epf_ontology_rag")
+
+    graph, concepts = load_ontology_concepts( embedding_model)
+
+    rag = { "embedding_model": embedding_model,
+        "collection": collection,
+        "groq_client": get_groq_client(),
+        "concepts": concepts,
+        "graph": graph}
+
+    return rag
+
+def run_ontology_query(question, rag):
+    start_time = time.perf_counter()
+
+    candidates = query_vector_collection( question,
+        rag["collection"],
+        rag["embedding_model"],
+        top_k=CANDIDATE_K)
+
+    ontology_matches = detect_ontology_concepts(question,
+        rag["embedding_model"],
+        rag["concepts"])
+
+    direct_sections, related_sections = get_ontology_sections(ontology_matches, rag["graph"])
+
+    chunks = rerank_with_ontology(candidates,
+        direct_sections,
+        related_sections)
+
+    chunks = chunks[:TOP_K]
+
+    answer, error = safe_generate_answer( question,
+        chunks,
+        rag["groq_client"])
+
+    latency = (time.perf_counter() - start_time)
+
+    return { "answer": answer,
+        "retrieved_chunks": chunks,
+        "latency": latency,
+        "generation_error": error,
+        "ontology_matches": ontology_matches,
+        "direct_sections": sorted(direct_sections),
+        "related_sections": sorted(related_sections)}
