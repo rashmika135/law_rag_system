@@ -5,36 +5,33 @@
    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
    xmlns:skos="http://www.w3.org/2004/02/skos/core#"
 >
-  <rdf:Description rdf:about="http://example.org/epf#IndividualAccountCredit">
+  <rdf:Description rdf:about="http://example.org/epf#MonthlyContributionPayment">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-    <rdf:type rdf:resource="http://example.org/epf#ContributionRule"/>
-    <rdfs:label>Credit of Contributions and Interest to Individual Account</rdfs:label>
-    <epf:definedIn rdf:resource="http://example.org/epf#Section18"/>
-    <skos:altLabel>credit contributions to individual account</skos:altLabel>
-    <skos:altLabel>member EPF account credit</skos:altLabel>
-    <skos:altLabel>contributions credited to employee account</skos:altLabel>
-    <skos:altLabel>employee and employer contributions credited to account</skos:altLabel>
-    <skos:altLabel>allocation of contributions to member account</skos:altLabel>
-    <skos:altLabel>posting contributions to individual account</skos:altLabel>
-    <skos:altLabel>crediting employer and employee payments to member account</skos:altLabel>
-    <skos:altLabel>account allocation of contributions and interest</skos:altLabel>
-    <epf:relatedTo rdf:resource="http://example.org/epf#EmployeeContribution"/>
-    <epf:relatedTo rdf:resource="http://example.org/epf#EmployerContribution"/>
-    <epf:relatedTo rdf:resource="http://example.org/epf#ContributionInterest"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/epf#ReducedEarningsContribution">
+    <rdf:type rdf:resource="http://example.org/epf#PaymentRule"/>
+    <rdfs:label>Monthly EPF Contribution Deduction and Payment</rdfs:label>
+    <epf:definedIn rdf:resource="http://example.org/epf#Section15"/>
+    <skos:altLabel>monthly EPF payment</skos:altLabel>
+    <skos:altLabel>deduct and pay employee contribution</skos:altLabel>
+    <skos:altLabel>employer deducts employee contribution</skos:altLabel>
+    <skos:altLabel>employer sends employee contribution to the Fund</skos:altLabel>
+    <skos:altLabel>payment on behalf of employee</skos:altLabel>
+    <skos:altLabel>monthly contribution payment deadline</skos:altLabel>
+    <skos:altLabel>pay before the last day of the succeeding month</skos:altLabel>
+    <skos:altLabel>employee contribution paid by employer</skos:altLabel>
+    <epf:hasConsequence rdf:resource="http://example.org/epf#LateContributionSurcharge"/>
+  
+    <epf:relatedTo rdf:resource="http://example.org/epf#IndividualAccountCredit"/></rdf:Description>
+  <rdf:Description rdf:about="http://example.org/epf#RecoveryOfUnpaidContributions">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-    <rdf:type rdf:resource="http://example.org/epf#ContributionRule"/>
-    <rdfs:label>Reduction of Earnings to Reduce EPF Contributions</rdfs:label>
-    <epf:definedIn rdf:resource="http://example.org/epf#Section12"/>
-    <skos:altLabel>reduce earnings to reduce contributions</skos:altLabel>
-    <skos:altLabel>reduce salary to lower EPF contribution</skos:altLabel>
-    <skos:altLabel>cut wages to avoid EPF contribution</skos:altLabel>
-    <skos:altLabel>employer lowering salary to reduce EPF</skos:altLabel>
-    <skos:altLabel>salary reduction to reduce contribution amount</skos:altLabel>
-    <skos:altLabel>contribution shortfall caused by reduced earnings</skos:altLabel>
-    <skos:altLabel>Commissioner directs payment of contribution difference</skos:altLabel>
-    <epf:relatedTo rdf:resource="http://example.org/epf#ProtectionFromEarningsReduction"/>
+    <rdf:type rdf:resource="http://example.org/epf#EnforcementRule"/>
+    <rdfs:label>Recovery of Money Due to the EPF</rdfs:label>
+    <epf:definedIn rdf:resource="http://example.org/epf#Section17"/>
+    <skos:altLabel>recover unpaid EPF contributions</skos:altLabel>
+    <skos:altLabel>recover money due to the Fund</skos:altLabel>
+    <skos:altLabel>EPF debt recovery</skos:altLabel>
+    <skos:altLabel>contributions recoverable as debt due to the State</skos:altLabel>
+    <skos:altLabel>Commissioner recovers unpaid contributions</skos:altLabel>
+    <skos:altLabel>recovery proceedings for EPF money</skos:altLabel>
   </rdf:Description>
   <rdf:Description rdf:about="http://example.org/epf#EPFAct">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
@@ -52,70 +49,21 @@
     <epf:hasSection rdf:resource="http://example.org/epf#Section19"/>
     <epf:hasSection rdf:resource="http://example.org/epf#Section20"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/epf#RecoveryOfUnpaidContributions">
+  <rdf:Description rdf:about="http://example.org/epf#Section13">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-    <rdf:type rdf:resource="http://example.org/epf#EnforcementRule"/>
-    <rdfs:label>Recovery of Money Due to the EPF</rdfs:label>
-    <epf:definedIn rdf:resource="http://example.org/epf#Section17"/>
-    <skos:altLabel>recover unpaid EPF contributions</skos:altLabel>
-    <skos:altLabel>recover money due to the Fund</skos:altLabel>
-    <skos:altLabel>EPF debt recovery</skos:altLabel>
-    <skos:altLabel>contributions recoverable as debt due to the State</skos:altLabel>
-    <skos:altLabel>Commissioner recovers unpaid contributions</skos:altLabel>
-    <skos:altLabel>recovery proceedings for EPF money</skos:altLabel>
+    <rdf:type rdf:resource="http://example.org/epf#LegalSection"/>
+    <rdfs:label>Section 13</rdfs:label>
   </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/epf#HigherContributionElection">
+  <rdf:Description rdf:about="http://example.org/epf#Section16">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-    <rdf:type rdf:resource="http://example.org/epf#ContributionRule"/>
-    <rdfs:label>Election to Pay Higher EPF Contribution Percentages</rdfs:label>
-    <epf:definedIn rdf:resource="http://example.org/epf#Section11"/>
-    <skos:altLabel>higher contribution percentage</skos:altLabel>
-    <skos:altLabel>higher EPF contribution rate</skos:altLabel>
-    <skos:altLabel>elect higher contribution rate</skos:altLabel>
-    <skos:altLabel>choose higher contribution percentage</skos:altLabel>
-    <skos:altLabel>contribute above the normal rate</skos:altLabel>
-    <skos:altLabel>pay more than the normal contribution rate</skos:altLabel>
-    <skos:altLabel>voluntary higher EPF contribution</skos:altLabel>
-    <skos:altLabel>increase EPF contribution percentage</skos:altLabel>
-    <skos:altLabel>employee and employer elect higher contributions</skos:altLabel>
-    <skos:altLabel>higher than section 10 contribution rate</skos:altLabel>
-    <skos:altLabel>optional increased EPF contribution rate</skos:altLabel>
-    <skos:altLabel>agreement to contribute above statutory rates</skos:altLabel>
-    <skos:altLabel>joint election for increased contribution rates</skos:altLabel>
-    <skos:altLabel>increased contribution by mutual election</skos:altLabel>
-    <epf:relatedTo rdf:resource="http://example.org/epf#EmployeeContribution"/>
-    <epf:relatedTo rdf:resource="http://example.org/epf#EmployerContribution"/>
+    <rdf:type rdf:resource="http://example.org/epf#LegalSection"/>
+    <rdfs:label>Section 16</rdfs:label>
   </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/epf#ContributionRounding">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-    <rdf:type rdf:resource="http://example.org/epf#ContributionRule"/>
-    <rdfs:label>Rounding of EPF Contribution Amounts</rdfs:label>
-    <epf:definedIn rdf:resource="http://example.org/epf#Section13"/>
-    <skos:altLabel>rounding of contribution amounts</skos:altLabel>
-    <skos:altLabel>fraction of a cent in contribution</skos:altLabel>
-    <skos:altLabel>EPF contribution rounding rule</skos:altLabel>
-    <skos:altLabel>round contribution amount to a cent</skos:altLabel>
-    <epf:relatedTo rdf:resource="http://example.org/epf#EmployeeContribution"/>
-    <epf:relatedTo rdf:resource="http://example.org/epf#EmployerContribution"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/epf#EmployerContribution">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-    <rdf:type rdf:resource="http://example.org/epf#ContributionRule"/>
-    <rdfs:label>Normal Employer EPF Contribution</rdfs:label>
-    <epf:definedIn rdf:resource="http://example.org/epf#Section10"/>
-    <skos:altLabel>employer contribution rate</skos:altLabel>
-    <skos:altLabel>employer EPF contribution percentage</skos:altLabel>
-    <skos:altLabel>normal employer contribution</skos:altLabel>
-    <skos:altLabel>12 percent employer contribution</skos:altLabel>
-    <skos:altLabel>employer pays twelve percent</skos:altLabel>
-    <skos:altLabel>employer monthly EPF contribution</skos:altLabel>
-    <epf:relatedTo rdf:resource="http://example.org/epf#EmployerLiabilityNonTransfer"/>
-    <epf:relatedTo rdf:resource="http://example.org/epf#ProtectionFromEarningsReduction"/>
-    <epf:relatedTo rdf:resource="http://example.org/epf#IndividualAccountCredit"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/epf#LegalAct">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:label>Legal Act</rdfs:label>
+  <rdf:Description rdf:about="http://example.org/epf#hasConsequence">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label>has consequence</rdfs:label>
+    <rdfs:domain rdf:resource="http://example.org/epf#ComplianceConcept"/>
+    <rdfs:range rdf:resource="http://example.org/epf#ComplianceConcept"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://example.org/epf#LateContributionSurcharge">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
@@ -134,53 +82,6 @@
     <skos:altLabel>contribution late by ten days</skos:altLabel>
     <epf:relatedTo rdf:resource="http://example.org/epf#RecoveryOfUnpaidContributions"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/epf#EnforcementRule">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:label>Enforcement Rule</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://example.org/epf#ComplianceConcept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/epf#EmployerLiabilityNonTransfer">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-    <rdf:type rdf:resource="http://example.org/epf#EmployerComplianceRule"/>
-    <rdfs:label>Employer Cannot Transfer Own EPF Liability to Employee</rdfs:label>
-    <epf:definedIn rdf:resource="http://example.org/epf#Section20"/>
-    <skos:altLabel>employer cannot deduct own contribution from employee</skos:altLabel>
-    <skos:altLabel>employer cannot deduct own surcharge from employee</skos:altLabel>
-    <skos:altLabel>employer liability cannot be transferred to employee</skos:altLabel>
-    <skos:altLabel>employer cannot shift EPF liability to employee</skos:altLabel>
-    <skos:altLabel>contract transferring employer EPF liability is void</skos:altLabel>
-    <skos:altLabel>employer bears own EPF liability</skos:altLabel>
-    <skos:altLabel>employee cannot be charged employer EPF share</skos:altLabel>
-    <skos:altLabel>employer share cannot be recovered from employee</skos:altLabel>
-    <skos:altLabel>no transfer of employer contribution obligation</skos:altLabel>
-    <epf:relatedTo rdf:resource="http://example.org/epf#EmployerContribution"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/epf#MonthlyContributionPayment">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-    <rdf:type rdf:resource="http://example.org/epf#PaymentRule"/>
-    <rdfs:label>Monthly EPF Contribution Deduction and Payment</rdfs:label>
-    <epf:definedIn rdf:resource="http://example.org/epf#Section15"/>
-    <skos:altLabel>monthly EPF payment</skos:altLabel>
-    <skos:altLabel>deduct and pay employee contribution</skos:altLabel>
-    <skos:altLabel>employer deducts employee contribution</skos:altLabel>
-    <skos:altLabel>employer sends employee contribution to the Fund</skos:altLabel>
-    <skos:altLabel>payment on behalf of employee</skos:altLabel>
-    <skos:altLabel>monthly contribution payment deadline</skos:altLabel>
-    <skos:altLabel>pay before the last day of the succeeding month</skos:altLabel>
-    <skos:altLabel>employee contribution paid by employer</skos:altLabel>
-    <epf:hasConsequence rdf:resource="http://example.org/epf#LateContributionSurcharge"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/epf#ContributionRule">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:label>Contribution Rule</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://example.org/epf#ComplianceConcept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/epf#definedIn">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label>defined in</rdfs:label>
-    <rdfs:domain rdf:resource="http://example.org/epf#ComplianceConcept"/>
-    <rdfs:range rdf:resource="http://example.org/epf#LegalSection"/>
-  </rdf:Description>
   <rdf:Description rdf:about="http://example.org/epf#EmployeeContribution">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdf:type rdf:resource="http://example.org/epf#ContributionRule"/>
@@ -193,39 +94,98 @@
     <skos:altLabel>8 percent employee contribution</skos:altLabel>
     <skos:altLabel>employee pays eight percent</skos:altLabel>
     <skos:altLabel>employee monthly EPF contribution</skos:altLabel>
-    <epf:relatedTo rdf:resource="http://example.org/epf#IndividualAccountCredit"/>
+  
+    <epf:relatedTo rdf:resource="http://example.org/epf#ContributionRounding"/>
+    <epf:relatedTo rdf:resource="http://example.org/epf#IndividualAccountCredit"/></rdf:Description>
+  <rdf:Description rdf:about="http://example.org/epf#definedIn">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label>defined in</rdfs:label>
+    <rdfs:domain rdf:resource="http://example.org/epf#ComplianceConcept"/>
+    <rdfs:range rdf:resource="http://example.org/epf#LegalSection"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/epf#EmployerLiabilityNonTransfer">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="http://example.org/epf#EmployerComplianceRule"/>
+    <rdfs:label>Employer Cannot Transfer Own EPF Liability to Employee</rdfs:label>
+    <epf:definedIn rdf:resource="http://example.org/epf#Section20"/>
+    <skos:altLabel>employer cannot deduct own contribution from employee</skos:altLabel>
+    <skos:altLabel>employer cannot deduct own surcharge from employee</skos:altLabel>
+    <skos:altLabel>employer liability cannot be transferred to employee</skos:altLabel>
+    <skos:altLabel>employer cannot shift EPF liability to employee</skos:altLabel>
+    <skos:altLabel>contract transferring employer EPF liability is void</skos:altLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/epf#LegalAct">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>Legal Act</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:about="http://example.org/epf#Section12">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdf:type rdf:resource="http://example.org/epf#LegalSection"/>
     <rdfs:label>Section 12</rdfs:label>
   </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/epf#hasSection">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label>has section</rdfs:label>
-    <rdfs:domain rdf:resource="http://example.org/epf#LegalAct"/>
-    <rdfs:range rdf:resource="http://example.org/epf#LegalSection"/>
+  <rdf:Description rdf:about="http://example.org/epf#ComplianceConcept">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>Compliance Concept</rdfs:label>
   </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/epf#Section18">
+  <rdf:Description rdf:about="http://example.org/epf#Section19">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdf:type rdf:resource="http://example.org/epf#LegalSection"/>
-    <rdfs:label>Section 18</rdfs:label>
+    <rdfs:label>Section 19</rdfs:label>
   </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/epf#Section11">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-    <rdf:type rdf:resource="http://example.org/epf#LegalSection"/>
-    <rdfs:label>Section 11</rdfs:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/epf#ContributionInterest">
+  <rdf:Description rdf:about="http://example.org/epf#EmployerContribution">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdf:type rdf:resource="http://example.org/epf#ContributionRule"/>
-    <rdfs:label>Interest on EPF Contributions</rdfs:label>
-    <epf:definedIn rdf:resource="http://example.org/epf#Section14"/>
-    <skos:altLabel>interest on EPF contributions</skos:altLabel>
-    <skos:altLabel>interest on member balance</skos:altLabel>
-    <skos:altLabel>interest credited to EPF account</skos:altLabel>
-    <skos:altLabel>annual interest on individual account</skos:altLabel>
-    <epf:relatedTo rdf:resource="http://example.org/epf#IndividualAccountCredit"/>
+    <rdfs:label>Normal Employer EPF Contribution</rdfs:label>
+    <epf:definedIn rdf:resource="http://example.org/epf#Section10"/>
+    <skos:altLabel>employer contribution rate</skos:altLabel>
+    <skos:altLabel>employer EPF contribution percentage</skos:altLabel>
+    <skos:altLabel>normal employer contribution</skos:altLabel>
+    <skos:altLabel>12 percent employer contribution</skos:altLabel>
+    <skos:altLabel>employer pays twelve percent</skos:altLabel>
+    <skos:altLabel>employer monthly EPF contribution</skos:altLabel>
+    <epf:relatedTo rdf:resource="http://example.org/epf#EmployerLiabilityNonTransfer"/>
+    <epf:relatedTo rdf:resource="http://example.org/epf#ProtectionFromEarningsReduction"/>
+  
+    <epf:relatedTo rdf:resource="http://example.org/epf#ContributionRounding"/>
+    <epf:relatedTo rdf:resource="http://example.org/epf#IndividualAccountCredit"/></rdf:Description>
+  <rdf:Description rdf:about="http://example.org/epf#HigherContributionElection">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="http://example.org/epf#ContributionRule"/>
+    <rdfs:label>Election to Pay Higher EPF Contribution Percentages</rdfs:label>
+    <epf:definedIn rdf:resource="http://example.org/epf#Section11"/>
+    <skos:altLabel>higher contribution percentage</skos:altLabel>
+    <skos:altLabel>higher EPF contribution rate</skos:altLabel>
+    <skos:altLabel>elect higher contribution rate</skos:altLabel>
+    <skos:altLabel>choose higher contribution percentage</skos:altLabel>
+    <skos:altLabel>contribute above the normal rate</skos:altLabel>
+    <skos:altLabel>pay more than the normal contribution rate</skos:altLabel>
+    <skos:altLabel>voluntary higher EPF contribution</skos:altLabel>
+    <skos:altLabel>increase EPF contribution percentage</skos:altLabel>
+    <skos:altLabel>employee and employer elect higher contributions</skos:altLabel>
+    <skos:altLabel>higher than section 10 contribution rate</skos:altLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/epf#PenaltyRule">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>Penalty Rule</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://example.org/epf#ComplianceConcept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/epf#Section14">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="http://example.org/epf#LegalSection"/>
+    <rdfs:label>Section 14</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/epf#ReducedEarningsContribution">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="http://example.org/epf#ContributionRule"/>
+    <rdfs:label>Reduction of Earnings to Reduce EPF Contributions</rdfs:label>
+    <epf:definedIn rdf:resource="http://example.org/epf#Section12"/>
+    <skos:altLabel>reduce earnings to reduce contributions</skos:altLabel>
+    <skos:altLabel>reduce salary to lower EPF contribution</skos:altLabel>
+    <skos:altLabel>cut wages to avoid EPF contribution</skos:altLabel>
+    <skos:altLabel>employer lowering salary to reduce EPF</skos:altLabel>
+    <skos:altLabel>salary reduction to reduce contribution amount</skos:altLabel>
+    <skos:altLabel>contribution shortfall caused by reduced earnings</skos:altLabel>
+    <skos:altLabel>Commissioner directs payment of contribution difference</skos:altLabel>
   </rdf:Description>
   <rdf:Description rdf:about="http://example.org/epf#ProtectionFromEarningsReduction">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
@@ -238,27 +198,15 @@
     <skos:altLabel>protection from salary reduction due to EPF liability</skos:altLabel>
     <skos:altLabel>no detrimental change to employee benefits because of EPF</skos:altLabel>
   </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/epf#Section14">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-    <rdf:type rdf:resource="http://example.org/epf#LegalSection"/>
-    <rdfs:label>Section 14</rdfs:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/epf#PenaltyRule">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:label>Penalty Rule</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://example.org/epf#ComplianceConcept"/>
+  <rdf:Description rdf:about="http://example.org/epf#hasSection">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label>has section</rdfs:label>
+    <rdfs:domain rdf:resource="http://example.org/epf#LegalAct"/>
+    <rdfs:range rdf:resource="http://example.org/epf#LegalSection"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://example.org/epf#LegalSection">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>Legal Section</rdfs:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/epf#EPFComplianceOntology">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
-    <rdfs:label>EPF Compliance Ontology</rdfs:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/epf#ComplianceConcept">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:label>Compliance Concept</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:about="http://example.org/epf#relatedTo">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
@@ -266,9 +214,24 @@
     <rdfs:domain rdf:resource="http://example.org/epf#ComplianceConcept"/>
     <rdfs:range rdf:resource="http://example.org/epf#ComplianceConcept"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/epf#PaymentRule">
+  <rdf:Description rdf:about="http://example.org/epf#Section17">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="http://example.org/epf#LegalSection"/>
+    <rdfs:label>Section 17</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/epf#Section18">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="http://example.org/epf#LegalSection"/>
+    <rdfs:label>Section 18</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/epf#Section11">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="http://example.org/epf#LegalSection"/>
+    <rdfs:label>Section 11</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/epf#ContributionRule">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:label>Payment Rule</rdfs:label>
+    <rdfs:label>Contribution Rule</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://example.org/epf#ComplianceConcept"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://example.org/epf#EmployerComplianceRule">
@@ -276,45 +239,90 @@
     <rdfs:label>Employer Compliance Rule</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://example.org/epf#ComplianceConcept"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/epf#Section17">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-    <rdf:type rdf:resource="http://example.org/epf#LegalSection"/>
-    <rdfs:label>Section 17</rdfs:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/epf#hasConsequence">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label>has consequence</rdfs:label>
-    <rdfs:domain rdf:resource="http://example.org/epf#ComplianceConcept"/>
-    <rdfs:range rdf:resource="http://example.org/epf#ComplianceConcept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/epf#Section20">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-    <rdf:type rdf:resource="http://example.org/epf#LegalSection"/>
-    <rdfs:label>Section 20</rdfs:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/epf#Section13">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-    <rdf:type rdf:resource="http://example.org/epf#LegalSection"/>
-    <rdfs:label>Section 13</rdfs:label>
+  <rdf:Description rdf:about="http://example.org/epf#EPFComplianceOntology">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+    <rdfs:label>EPF Compliance Ontology</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:about="http://example.org/epf#Section15">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdf:type rdf:resource="http://example.org/epf#LegalSection"/>
     <rdfs:label>Section 15</rdfs:label>
   </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/epf#PaymentRule">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>Payment Rule</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://example.org/epf#ComplianceConcept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/epf#Section20">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="http://example.org/epf#LegalSection"/>
+    <rdfs:label>Section 20</rdfs:label>
+  </rdf:Description>
   <rdf:Description rdf:about="http://example.org/epf#Section10">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdf:type rdf:resource="http://example.org/epf#LegalSection"/>
     <rdfs:label>Section 10</rdfs:label>
   </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/epf#Section16">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-    <rdf:type rdf:resource="http://example.org/epf#LegalSection"/>
-    <rdfs:label>Section 16</rdfs:label>
+  <rdf:Description rdf:about="http://example.org/epf#EnforcementRule">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>Enforcement Rule</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://example.org/epf#ComplianceConcept"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://example.org/epf#Section19">
+
+  <rdf:Description rdf:about="http://example.org/epf#CalculationRule">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>Calculation Rule</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://example.org/epf#ComplianceConcept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/epf#InterestRule">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>Interest Rule</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://example.org/epf#ComplianceConcept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/epf#AccountRule">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>Individual Account Rule</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://example.org/epf#ComplianceConcept"/>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://example.org/epf#ContributionRounding">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-    <rdf:type rdf:resource="http://example.org/epf#LegalSection"/>
-    <rdfs:label>Section 19</rdfs:label>
+    <rdf:type rdf:resource="http://example.org/epf#CalculationRule"/>
+    <rdfs:label>Rounding of Contribution Fractions</rdfs:label>
+    <epf:definedIn rdf:resource="http://example.org/epf#Section13"/>
+    <skos:altLabel>round contribution amount</skos:altLabel>
+    <skos:altLabel>rounding EPF contribution</skos:altLabel>
+    <skos:altLabel>fraction of a cent in contribution</skos:altLabel>
+    <skos:altLabel>ignore fraction less than half a cent</skos:altLabel>
+    <skos:altLabel>reckon half a cent or more as one cent</skos:altLabel>
+    <skos:altLabel>contribution fraction rounding rule</skos:altLabel>
+    <epf:relatedTo rdf:resource="http://example.org/epf#MonthlyContributionPayment"/>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://example.org/epf#FundInterest">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="http://example.org/epf#InterestRule"/>
+    <rdfs:label>Interest on EPF Contributions and Individual Account Balance</rdfs:label>
+    <epf:definedIn rdf:resource="http://example.org/epf#Section14"/>
+    <skos:altLabel>EPF interest</skos:altLabel>
+    <skos:altLabel>interest on contributions</skos:altLabel>
+    <skos:altLabel>interest on individual account</skos:altLabel>
+    <skos:altLabel>annual interest on EPF balance</skos:altLabel>
+    <skos:altLabel>interest rate on member account</skos:altLabel>
+    <skos:altLabel>minimum two and a half percent interest</skos:altLabel>
+    <epf:relatedTo rdf:resource="http://example.org/epf#IndividualAccountCredit"/>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://example.org/epf#IndividualAccountCredit">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="http://example.org/epf#AccountRule"/>
+    <rdfs:label>Crediting Contributions and Interest to Individual Member Account</rdfs:label>
+    <epf:definedIn rdf:resource="http://example.org/epf#Section18"/>
+    <skos:altLabel>credit contributions to individual account</skos:altLabel>
+    <skos:altLabel>credit employer contribution to member account</skos:altLabel>
+    <skos:altLabel>credit employee contribution to member account</skos:altLabel>
+    <skos:altLabel>credit interest to individual account</skos:altLabel>
+    <skos:altLabel>member EPF account credit</skos:altLabel>
+    <skos:altLabel>contributions and interest credited to member account</skos:altLabel>
   </rdf:Description>
 </rdf:RDF>

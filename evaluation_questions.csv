@@ -1,0 +1,31 @@
+id,type,question,expected_sections
+1,direct,What percentage of an employee's earnings must the employee contribute to EPF?,Section10
+2,direct,What percentage of an employee's earnings must the employer contribute to EPF?,Section10
+3,direct,Can an employee and employer choose to contribute at percentages higher than the normal EPF rates?,Section11
+4,direct,What can the Commissioner do if an employer reduces an employee's earnings to reduce EPF contributions?,Section12
+5,direct,How is a fraction of a cent handled when calculating an EPF contribution?,Section13
+6,direct,Is interest paid on the amount standing to the credit of an EPF member?,Section14
+7,direct,Who must deduct and pay the employee's monthly EPF contribution to the Fund?,Section15
+8,direct,What surcharge applies when EPF contributions are paid late?,Section16
+9,direct,How can money due to the EPF Fund be recovered?,Section17
+10,direct,"Where are the employee contribution, employer contribution and interest credited?",Section18
+11,direct,Can an employer reduce an employee's earnings because the employer has to pay EPF contributions?,Section19
+12,direct,Can an employer deduct the employer's own EPF contribution from the employee's earnings?,Section20
+13,paraphrased,How much of my monthly earnings do I personally have to put into EPF?,Section10
+14,paraphrased,How much must the company add to my EPF each month?,Section10
+15,paraphrased,Can both sides agree to pay more into EPF than the usual percentages?,Section11
+16,paraphrased,My employer lowered my salary so that the EPF amount would become smaller. What does the Act say about that?,Section12
+17,paraphrased,What happens if the calculated contribution includes less than half a cent or half a cent or more?,Section13
+18,paraphrased,Does the money in a member's EPF account earn yearly interest?,Section14
+19,paraphrased,Who is responsible for sending the worker's EPF deduction to the Fund?,Section15
+20,paraphrased,My employer sent the EPF payment after the deadline. What extra amount can be charged?,Section16
+21,paraphrased,"If an employer still owes EPF money, can the Fund recover it through legal proceedings?",Section17
+22,paraphrased,"When EPF payments and interest are received, which account of the member receives them?",Section18
+23,paraphrased,Can a company cut a worker's benefits just because the company has an EPF payment obligation?,Section19
+24,paraphrased,Can a company make the worker take over the company's legal responsibility to pay its EPF share?,Section20
+25,relationship,What can happen when an employer misses the EPF payment deadline and the amount remains unpaid?,Section16|Section17
+26,relationship,"What is the employer's duty regarding the employee's monthly EPF contribution, and what happens if it is paid late?",Section15|Section16
+27,relationship,How are EPF contributions and the interest earned on them reflected in a member's account?,Section14|Section18
+28,relationship,What protections exist if an employer tries to reduce earnings in order to lower EPF-related costs?,Section12|Section19
+29,relationship,What does the Act say about the employer's contribution and trying to pass that cost to the employee?,Section10|Section20
+30,relationship,"If EPF contributions are overdue, what financial consequence may apply and how can the unpaid amount be recovered?",Section16|Section17

@@ -1,0 +1,91 @@
+id,type,question,expected_sections,system,retrieved,hit_at_1,hit_at_3,mrr,recall_at_3
+1,direct,What percentage of an employee's earnings must the employee contribute to EPF?,Section10,Basic RAG,"Section10 > Section13,Section14 > Section12,Section13",1,1,1.0,1.0
+1,direct,What percentage of an employee's earnings must the employee contribute to EPF?,Section10,Structure RAG,Section13 > Section10 > Section12,0,1,0.5,1.0
+1,direct,What percentage of an employee's earnings must the employee contribute to EPF?,Section10,Ontology RAG,Section10 > Section13 > Section14,1,1,1.0,1.0
+2,direct,What percentage of an employee's earnings must the employer contribute to EPF?,Section10,Basic RAG,"Section10 > Section13,Section14 > Section12,Section13",1,1,1.0,1.0
+2,direct,What percentage of an employee's earnings must the employer contribute to EPF?,Section10,Structure RAG,Section13 > Section10 > Section12,0,1,0.5,1.0
+2,direct,What percentage of an employee's earnings must the employer contribute to EPF?,Section10,Ontology RAG,Section10 > Section20 > Section13,1,1,1.0,1.0
+3,direct,Can an employee and employer choose to contribute at percentages higher than the normal EPF rates?,Section11,Basic RAG,"Section10 > Section13,Section14 > Section12,Section13",0,0,0.0,0.0
+3,direct,Can an employee and employer choose to contribute at percentages higher than the normal EPF rates?,Section11,Structure RAG,Section13 > Section19 > Section12,0,0,0.0,0.0
+3,direct,Can an employee and employer choose to contribute at percentages higher than the normal EPF rates?,Section11,Ontology RAG,Section13 > Section10 > Section19,0,0,0.0,0.0
+4,direct,What can the Commissioner do if an employer reduces an employee's earnings to reduce EPF contributions?,Section12,Basic RAG,"Section12 > Section11,Section12 > Section18,Section19,Section20",1,1,1.0,1.0
+4,direct,What can the Commissioner do if an employer reduces an employee's earnings to reduce EPF contributions?,Section12,Structure RAG,Section12 > Section19 > Section15,1,1,1.0,1.0
+4,direct,What can the Commissioner do if an employer reduces an employee's earnings to reduce EPF contributions?,Section12,Ontology RAG,Section12 > Section19 > Section20,1,1,1.0,1.0
+5,direct,How is a fraction of a cent handled when calculating an EPF contribution?,Section13,Basic RAG,"Section12,Section13 > Section13,Section14 > Section14",1,1,1.0,1.0
+5,direct,How is a fraction of a cent handled when calculating an EPF contribution?,Section13,Structure RAG,Section13 > Section14 > Section12,1,1,1.0,1.0
+5,direct,How is a fraction of a cent handled when calculating an EPF contribution?,Section13,Ontology RAG,Section13 > Section14 > Section10,1,1,1.0,1.0
+6,direct,Is interest paid on the amount standing to the credit of an EPF member?,Section14,Basic RAG,"Section14 > Section14 > Section13,Section14",1,1,1.0,1.0
+6,direct,Is interest paid on the amount standing to the credit of an EPF member?,Section14,Structure RAG,Section14 > Section13 > Section18,1,1,1.0,1.0
+6,direct,Is interest paid on the amount standing to the credit of an EPF member?,Section14,Ontology RAG,Section14 > Section18 > Section17,1,1,1.0,1.0
+7,direct,Who must deduct and pay the employee's monthly EPF contribution to the Fund?,Section15,Basic RAG,"Section10 > Section15,Section16 > Section10",0,1,0.5,1.0
+7,direct,Who must deduct and pay the employee's monthly EPF contribution to the Fund?,Section15,Structure RAG,Section15 > Section10 > Section16,1,1,1.0,1.0
+7,direct,Who must deduct and pay the employee's monthly EPF contribution to the Fund?,Section15,Ontology RAG,Section15 > Section10 > Section20,1,1,1.0,1.0
+8,direct,What surcharge applies when EPF contributions are paid late?,Section16,Basic RAG,"Section16 > Section15,Section16 > Section16",1,1,1.0,1.0
+8,direct,What surcharge applies when EPF contributions are paid late?,Section16,Structure RAG,Section16 > Section15 > Section10,1,1,1.0,1.0
+8,direct,What surcharge applies when EPF contributions are paid late?,Section16,Ontology RAG,Section16 > Section15 > Section17,1,1,1.0,1.0
+9,direct,How can money due to the EPF Fund be recovered?,Section17,Basic RAG,"Section14 > Section16,Section17 > Section17",0,1,0.5,1.0
+9,direct,How can money due to the EPF Fund be recovered?,Section17,Structure RAG,Section17 > Section14 > Section16,1,1,1.0,1.0
+9,direct,How can money due to the EPF Fund be recovered?,Section17,Ontology RAG,Section17 > Section14 > Section16,1,1,1.0,1.0
+10,direct,"Where are the employee contribution, employer contribution and interest credited?",Section18,Basic RAG,"Section10 > Section18,Section19,Section20 > Section13,Section14",0,1,0.5,1.0
+10,direct,"Where are the employee contribution, employer contribution and interest credited?",Section18,Structure RAG,Section18 > Section15 > Section13,1,1,1.0,1.0
+10,direct,"Where are the employee contribution, employer contribution and interest credited?",Section18,Ontology RAG,Section18 > Section10 > Section15,1,1,1.0,1.0
+11,direct,Can an employer reduce an employee's earnings because the employer has to pay EPF contributions?,Section19,Basic RAG,"Section12 > Section10 > Section18,Section19,Section20",0,1,0.3333,1.0
+11,direct,Can an employer reduce an employee's earnings because the employer has to pay EPF contributions?,Section19,Structure RAG,Section19 > Section12 > Section10,1,1,1.0,1.0
+11,direct,Can an employer reduce an employee's earnings because the employer has to pay EPF contributions?,Section19,Ontology RAG,Section19 > Section12 > Section20,1,1,1.0,1.0
+12,direct,Can an employer deduct the employer's own EPF contribution from the employee's earnings?,Section20,Basic RAG,"Section20 > Section18,Section19,Section20 > Section10",1,1,1.0,1.0
+12,direct,Can an employer deduct the employer's own EPF contribution from the employee's earnings?,Section20,Structure RAG,Section20 > Section15 > Section19,1,1,1.0,1.0
+12,direct,Can an employer deduct the employer's own EPF contribution from the employee's earnings?,Section20,Ontology RAG,Section20 > Section15 > Section10,1,1,1.0,1.0
+13,paraphrased,How much of my monthly earnings do I personally have to put into EPF?,Section10,Basic RAG,"Section13,Section14 > Section10 > Section14",0,1,0.5,1.0
+13,paraphrased,How much of my monthly earnings do I personally have to put into EPF?,Section10,Structure RAG,Section10 > Section14 > Section13,1,1,1.0,1.0
+13,paraphrased,How much of my monthly earnings do I personally have to put into EPF?,Section10,Ontology RAG,Section10 > Section14 > Section13,1,1,1.0,1.0
+14,paraphrased,How much must the company add to my EPF each month?,Section10,Basic RAG,"Section16 > Section13,Section14 > Section10",0,1,0.3333,1.0
+14,paraphrased,How much must the company add to my EPF each month?,Section10,Structure RAG,Section16 > Section10 > Section13,0,1,0.5,1.0
+14,paraphrased,How much must the company add to my EPF each month?,Section10,Ontology RAG,Section10 > Section14 > Section15,1,1,1.0,1.0
+15,paraphrased,Can both sides agree to pay more into EPF than the usual percentages?,Section11,Basic RAG,"Section14 > Section13,Section14 > Section12,Section13",0,0,0.0,0.0
+15,paraphrased,Can both sides agree to pay more into EPF than the usual percentages?,Section11,Structure RAG,Section13 > Section14 > Section16,0,0,0.0,0.0
+15,paraphrased,Can both sides agree to pay more into EPF than the usual percentages?,Section11,Ontology RAG,Section14 > Section13 > Section19,0,0,0.0,0.0
+16,paraphrased,My employer lowered my salary so that the EPF amount would become smaller. What does the Act say about that?,Section12,Basic RAG,"Section12 > Section11,Section12 > Section10",1,1,1.0,1.0
+16,paraphrased,My employer lowered my salary so that the EPF amount would become smaller. What does the Act say about that?,Section12,Structure RAG,Section12 > Section19 > Section20,1,1,1.0,1.0
+16,paraphrased,My employer lowered my salary so that the EPF amount would become smaller. What does the Act say about that?,Section12,Ontology RAG,Section12 > Section19 > Section20,1,1,1.0,1.0
+17,paraphrased,What happens if the calculated contribution includes less than half a cent or half a cent or more?,Section13,Basic RAG,"Section12,Section13 > Section14 > Section14",1,1,1.0,1.0
+17,paraphrased,What happens if the calculated contribution includes less than half a cent or half a cent or more?,Section13,Structure RAG,Section13 > Section14 > Section12,1,1,1.0,1.0
+17,paraphrased,What happens if the calculated contribution includes less than half a cent or half a cent or more?,Section13,Ontology RAG,Section13 > Section14 > Section12,1,1,1.0,1.0
+18,paraphrased,Does the money in a member's EPF account earn yearly interest?,Section14,Basic RAG,"Section14 > Section13,Section14 > Section14",1,1,1.0,1.0
+18,paraphrased,Does the money in a member's EPF account earn yearly interest?,Section14,Structure RAG,Section14 > Section13 > Section18,1,1,1.0,1.0
+18,paraphrased,Does the money in a member's EPF account earn yearly interest?,Section14,Ontology RAG,Section14 > Section18 > Section13,1,1,1.0,1.0
+19,paraphrased,Who is responsible for sending the worker's EPF deduction to the Fund?,Section15,Basic RAG,"Section10 > Section10 > Section15,Section16",0,1,0.3333,1.0
+19,paraphrased,Who is responsible for sending the worker's EPF deduction to the Fund?,Section15,Structure RAG,Section15 > Section10 > Section18,1,1,1.0,1.0
+19,paraphrased,Who is responsible for sending the worker's EPF deduction to the Fund?,Section15,Ontology RAG,Section15 > Section20 > Section10,1,1,1.0,1.0
+20,paraphrased,My employer sent the EPF payment after the deadline. What extra amount can be charged?,Section16,Basic RAG,"Section16 > Section10 > Section16,Section17",1,1,1.0,1.0
+20,paraphrased,My employer sent the EPF payment after the deadline. What extra amount can be charged?,Section16,Structure RAG,Section16 > Section10 > Section15,1,1,1.0,1.0
+20,paraphrased,My employer sent the EPF payment after the deadline. What extra amount can be charged?,Section16,Ontology RAG,Section16 > Section15 > Section20,1,1,1.0,1.0
+21,paraphrased,"If an employer still owes EPF money, can the Fund recover it through legal proceedings?",Section17,Basic RAG,Section17 > Section10 > Section10,1,1,1.0,1.0
+21,paraphrased,"If an employer still owes EPF money, can the Fund recover it through legal proceedings?",Section17,Structure RAG,Section17 > Section10 > Section15,1,1,1.0,1.0
+21,paraphrased,"If an employer still owes EPF money, can the Fund recover it through legal proceedings?",Section17,Ontology RAG,Section17 > Section19 > Section10,1,1,1.0,1.0
+22,paraphrased,"When EPF payments and interest are received, which account of the member receives them?",Section18,Basic RAG,"Section14 > Section14 > Section13,Section14",0,0,0.0,0.0
+22,paraphrased,"When EPF payments and interest are received, which account of the member receives them?",Section18,Structure RAG,Section14 > Section18 > Section13,0,1,0.5,1.0
+22,paraphrased,"When EPF payments and interest are received, which account of the member receives them?",Section18,Ontology RAG,Section14 > Section18 > Section17,0,1,0.5,1.0
+23,paraphrased,Can a company cut a worker's benefits just because the company has an EPF payment obligation?,Section19,Basic RAG,Section12 > Section10 > Section10,0,0,0.0,0.0
+23,paraphrased,Can a company cut a worker's benefits just because the company has an EPF payment obligation?,Section19,Structure RAG,Section19 > Section12 > Section10,1,1,1.0,1.0
+23,paraphrased,Can a company cut a worker's benefits just because the company has an EPF payment obligation?,Section19,Ontology RAG,Section19 > Section12 > Section20,1,1,1.0,1.0
+24,paraphrased,Can a company make the worker take over the company's legal responsibility to pay its EPF share?,Section20,Basic RAG,Section10 > Section10 > Section20,0,1,0.3333,1.0
+24,paraphrased,Can a company make the worker take over the company's legal responsibility to pay its EPF share?,Section20,Structure RAG,Section19 > Section15 > Section10,0,0,0.0,0.0
+24,paraphrased,Can a company make the worker take over the company's legal responsibility to pay its EPF share?,Section20,Ontology RAG,Section19 > Section20 > Section17,0,1,0.5,1.0
+25,relationship,What can happen when an employer misses the EPF payment deadline and the amount remains unpaid?,Section16|Section17,Basic RAG,"Section10 > Section16,Section17 > Section16",0,1,0.5,1.0
+25,relationship,What can happen when an employer misses the EPF payment deadline and the amount remains unpaid?,Section16|Section17,Structure RAG,Section15 > Section10 > Section16,0,1,0.3333,0.5
+25,relationship,What can happen when an employer misses the EPF payment deadline and the amount remains unpaid?,Section16|Section17,Ontology RAG,Section16 > Section20 > Section17,1,1,1.0,1.0
+26,relationship,"What is the employer's duty regarding the employee's monthly EPF contribution, and what happens if it is paid late?",Section15|Section16,Basic RAG,"Section10 > Section15,Section16 > Section10",0,1,0.5,1.0
+26,relationship,"What is the employer's duty regarding the employee's monthly EPF contribution, and what happens if it is paid late?",Section15|Section16,Structure RAG,Section15 > Section10 > Section12,1,1,1.0,0.5
+26,relationship,"What is the employer's duty regarding the employee's monthly EPF contribution, and what happens if it is paid late?",Section15|Section16,Ontology RAG,Section15 > Section10 > Section16,1,1,1.0,1.0
+27,relationship,How are EPF contributions and the interest earned on them reflected in a member's account?,Section14|Section18,Basic RAG,"Section14 > Section13,Section14 > Section10",1,1,1.0,0.5
+27,relationship,How are EPF contributions and the interest earned on them reflected in a member's account?,Section14|Section18,Structure RAG,Section13 > Section14 > Section18,0,1,0.5,1.0
+27,relationship,How are EPF contributions and the interest earned on them reflected in a member's account?,Section14|Section18,Ontology RAG,Section14 > Section18 > Section15,1,1,1.0,1.0
+28,relationship,What protections exist if an employer tries to reduce earnings in order to lower EPF-related costs?,Section12|Section19,Basic RAG,"Section12 > Section10 > Section11,Section12",1,1,1.0,0.5
+28,relationship,What protections exist if an employer tries to reduce earnings in order to lower EPF-related costs?,Section12|Section19,Structure RAG,Section19 > Section12 > Section10,1,1,1.0,1.0
+28,relationship,What protections exist if an employer tries to reduce earnings in order to lower EPF-related costs?,Section12|Section19,Ontology RAG,Section19 > Section12 > Section20,1,1,1.0,1.0
+29,relationship,What does the Act say about the employer's contribution and trying to pass that cost to the employee?,Section10|Section20,Basic RAG,Section10 > Section10 > Section20,1,1,1.0,1.0
+29,relationship,What does the Act say about the employer's contribution and trying to pass that cost to the employee?,Section10|Section20,Structure RAG,Section15 > Section19 > Section20,0,1,0.3333,0.5
+29,relationship,What does the Act say about the employer's contribution and trying to pass that cost to the employee?,Section10|Section20,Ontology RAG,Section20 > Section10 > Section19,1,1,1.0,1.0
+30,relationship,"If EPF contributions are overdue, what financial consequence may apply and how can the unpaid amount be recovered?",Section16|Section17,Basic RAG,"Section16,Section17 > Section15,Section16 > Section16",1,1,1.0,1.0
+30,relationship,"If EPF contributions are overdue, what financial consequence may apply and how can the unpaid amount be recovered?",Section16|Section17,Structure RAG,Section15 > Section16 > Section17,0,1,0.5,1.0
+30,relationship,"If EPF contributions are overdue, what financial consequence may apply and how can the unpaid amount be recovered?",Section16|Section17,Ontology RAG,Section15 > Section16 > Section17,0,1,0.5,1.0

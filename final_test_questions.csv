@@ -1,0 +1,21 @@
+id,type,question,expected_sections
+1,direct,"For ordinary covered employment, what are the normal contribution duties of the worker and the employer?",Section10
+2,direct,"If both parties want a larger percentage paid into the Fund from a future date, is there a provision for that choice?",Section11
+3,direct,An employer lowers wages only to make the EPF amount smaller. Which rule addresses that conduct?,Section12
+4,direct,A calculated EPF amount ends with 0.4 of a cent. How should that fraction be treated?,Section13
+5,direct,What rule governs the yearly interest applied to the balance standing in a member's account?,Section14
+6,direct,"After taking the worker's EPF share from earnings, what provision requires the employer to send it to the Fund?",Section15
+7,direct,A contribution is overdue by several weeks without an acceptable explanation. Which provision governs the additional charge?,Section16
+8,direct,What provision allows sums owed to the Fund to be collected as a debt?,Section17
+9,direct,"Once contributions and interest are received, where must they be entered for the member?",Section18
+10,direct,May an employer worsen another employment benefit simply because EPF payments cost the employer money?,Section19
+11,direct,Can an employment agreement require the worker to reimburse the company for the company's EPF share?,Section20
+12,paraphrased,The worker and company both want to increase what they pay into EPF above the standard percentages. Can they formally choose that?,Section11
+13,paraphrased,Which rule deals with recording both sides' payments and the earned interest in the member's own EPF balance?,Section18
+14,paraphrased,Payroll removes the company's EPF portion from the worker's pay. What provision is relevant?,Section20
+15,relationship,"What is the employer required to do with the worker's monthly contribution, and what can follow if the remittance is late?",Section15|Section16
+16,relationship,"If contributions remain outstanding after the due date, which provisions cover the added charge and later recovery?",Section16|Section17
+17,relationship,How does interest on the EPF balance connect with the rule that records money in the member's individual account?,Section14|Section18
+18,relationship,Which protections apply when an employer manipulates pay to reduce EPF and also disadvantages the employee because of EPF costs?,Section12|Section19
+19,relationship,"What is the employer's normal EPF payment responsibility, and may that responsibility be shifted back to the employee?",Section10|Section20
+20,relationship,"When payment is late and the amount remains unpaid, which provisions deal with the surcharge and the legal recovery process?",Section16|Section17

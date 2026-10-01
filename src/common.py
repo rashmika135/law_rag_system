@@ -172,7 +172,7 @@ def create_vector_collection(chunks,
     for chunk in chunks:
         texts.append(chunk["text"])
 
-    embeddings = embedding_model.encode(texts,vnormalize_embeddings=True)
+    embeddings = embedding_model.encode(texts,normalize_embeddings=True)
 
     client = chromadb.Client()
 
